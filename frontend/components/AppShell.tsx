@@ -30,7 +30,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <aside className="flex w-56 shrink-0 flex-col border-r border-neutral-200 bg-white">
         <div className="border-b border-neutral-200 px-4 py-4">
           <div className="text-sm font-bold tracking-tight text-neutral-900">
-            MitraMetrology AI
+            LabelGuard
           </div>
           <div className="mt-0.5 text-[11px] text-neutral-500">
             Scan. Verify. Explain. Enforce.

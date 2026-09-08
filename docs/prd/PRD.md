@@ -1,4 +1,4 @@
-# MitraMetrology AI — Complete Product Requirements Document (PRD)
+# LabelGuard — Complete Product Requirements Document (PRD)
 
 SIH Problem Statement 26034 — Software System to Check Compliance of Packaged Commodities under the Legal Metrology (Packaged Commodities) Rules, 2011
 Tagline: Scan. Verify. Explain. Enforce.
@@ -8,7 +8,7 @@ Scope: Image/label inspection + OCR + computer vision + deterministic legal rule
 ## 1. Document Control
 | Item | Value |
 |---|---|
-| Product | MitraMetrology AI |
+| Product | LabelGuard |
 | Problem Statement | SIH PS 26034 |
 | Authority / Domain | Department of Consumer Affairs, Ministry of Consumer Affairs, Food & Public Distribution |
 | Primary legal reference | Legal Metrology (Packaged Commodities) Rules, 2011 and applicable amendments |
@@ -19,7 +19,7 @@ Scope: Image/label inspection + OCR + computer vision + deterministic legal rule
 | Current-rule policy | Rules are versioned by effective date and source notification |
 
 ## 2. Executive Summary
-MitraMetrology AI is a single inspection workflow for checking packaged commodities against applicable declaration, quantity, pricing, readability, placement and e-commerce requirements. An inspector uploads or captures package images. The system performs quality checks, image correction, computer-vision region detection and OCR, then converts OCR output into structured declarations. A versioned rules engine evaluates only the requirements applicable to the commodity, package type, channel, date and known exemptions.
+LabelGuard is a single inspection workflow for checking packaged commodities against applicable declaration, quantity, pricing, readability, placement and e-commerce requirements. An inspector uploads or captures package images. The system performs quality checks, image correction, computer-vision region detection and OCR, then converts OCR output into structured declarations. A versioned rules engine evaluates only the requirements applicable to the commodity, package type, channel, date and known exemptions.
 Every finding is evidence-first: the result stores the rule identifier/version, source, extracted value, OCR confidence, image region, reason and reviewer status. Automated results are labelled as PASS, POTENTIAL NON-COMPLIANCE or NEEDS VERIFICATION until an authorized human reviewer confirms them. This prevents an LLM from inventing or making unsupported legal conclusions.
 
 ## 3. Problem Statement
@@ -526,7 +526,7 @@ Optional assistant: 'Why was this flagged?' retrieves the relevant approved offi
 
 ## 42. 5-Minute Hackathon Demo Script
 - 0:00–0:30 — State the manual-inspection problem.
-- 0:30–1:00 — Open MitraMetrology and create inspection.
+- 0:30–1:00 — Open LabelGuard and create inspection.
 - 1:00–1:30 — Upload front/back package images.
 - 1:30–2:15 — Show image quality, OCR and extracted declarations.
 - 2:15–3:15 — Run versioned rules engine and show PASS / Potential Issue / Needs Verification.
@@ -653,6 +653,6 @@ Seed the database with stable IDs so the UI and reports remain consistent across
 
 ## 52. Final Product Principle
 The strongest SIH solution is not 'AI that decides the law'. It is an evidence-backed compliance assistant where AI reads and locates information, deterministic rules apply the law, uncertainty is explicit, and a human officer remains in control of the final determination.
-MitraMetrology AI = Capture → Understand → Apply → Prove → Review → Report.
+LabelGuard = Capture → Understand → Apply → Prove → Review → Report.
 
 *END OF PRD*

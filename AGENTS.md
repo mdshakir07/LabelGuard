@@ -1,9 +1,9 @@
-# MitraMetrology AI — AGENTS.md
+# LabelGuard — AGENTS.md
 
 Master plan + conventions for this repo. Auto-loaded every session. Read this before any work.
 
 ## Project
-- **Product**: MitraMetrology AI — SIH problem statement 26034 (Legal Metrology (Packaged Commodities) Rules, 2011)
+- **Product**: LabelGuard — SIH problem statement 26034 (Legal Metrology (Packaged Commodities) Rules, 2011)
 - **Tagline**: Scan. Verify. Explain. Enforce.
 - **Vision**: Capture → Understand → Apply → Prove → Review → Report (evidence-backed compliance assistant)
 - **Full spec**: `docs/prd/PRD.md` (approved PRD v2.0, 04 Sep 2026)

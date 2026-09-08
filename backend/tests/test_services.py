@@ -86,7 +86,7 @@ class TestReports:
 
         monkeypatch.setattr(builtins, "__import__", _fake_import)
         text = reports_svc.generate_pdf(FakeInspection("IN-2026-0002"), ["dummy row"])
-        assert b"MitraMetrology AI Report" in text
+        assert b"LabelGuard Report" in text
         assert b"legal conclusion" in text
 
     def test_docx_is_zip(self):

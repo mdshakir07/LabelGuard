@@ -29,7 +29,7 @@ export default function Page() {
     <main className="flex min-h-screen items-center justify-center p-8">
       <div className="rounded-xl border border-gray-200 bg-white p-10 text-center shadow-sm">
         <h1 className="text-2xl font-semibold text-gray-900">{TITLE}</h1>
-        <p className="mt-2 text-sm text-gray-500">MitraMetrology AI — route stub (Phase 0). Full screen lands in C1–C8.</p>
+        <p className="mt-2 text-sm text-gray-500">LabelGuard AI — route stub (Phase 0). Full screen lands in C1–C8.</p>
       </div>
     </main>
   );

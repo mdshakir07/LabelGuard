@@ -41,7 +41,7 @@ export default function LoginPage() {
     <main className="flex min-h-screen items-center justify-center bg-neutral-950 p-8">
       <div className="w-full max-w-sm">
         <div className="mb-6 text-center">
-          <div className="text-xl font-bold text-white">MitraMetrology AI</div>
+          <div className="text-xl font-bold text-white">LabelGuard</div>
           <div className="mt-1 text-xs uppercase tracking-widest text-neutral-400">
             Scan · Verify · Explain · Enforce
           </div>

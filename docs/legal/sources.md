@@ -1,6 +1,6 @@
 # Official Legal Sources Register
 
-Maintained legal corpus for MitraMetrology AI rules. B alone edits this file / rule data. Before production or real enforcement, legal team must validate every configured rule against the latest Gazette/Department notification (PRD §47, §48).
+Maintained legal corpus for LabelGuard rules. B alone edits this file / rule data. Before production or real enforcement, legal team must validate every configured rule against the latest Gazette/Department notification (PRD §47, §48).
 
 ## Primary sources (official)
 - Department of Consumer Affairs — Legal Metrology page (2011 Rules + amendments): https://consumeraffairs.gov.in/pages/legal-metrology-act

@@ -1,4 +1,4 @@
-# MitraMetrology AI
+# LabelGuard
 
 **Scan. Verify. Explain. Enforce.** — Evidence-backed compliance assistant for SIH Problem Statement 26034 (Legal Metrology (Packaged Commodities) Rules, 2011).
 

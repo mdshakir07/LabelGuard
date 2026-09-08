@@ -30,7 +30,7 @@ def generate_pdf(inspection, rows: list) -> bytes:
         from reportlab.platypus import (Paragraph, SimpleDocTemplate, Spacer,
                                         Table, TableStyle)
     except Exception:
-        text = (f"MitraMetrology AI Report\nInspection: {inspection.public_id}\n\n"
+        text = (f"LabelGuard Report\nInspection: {inspection.public_id}\n\n"
                 + "\n".join(str(r) for r in rows)
                 + "\n\nDisclaimer: This report contains automated findings only and does "
                   "not constitute a legal conclusion. Human confirmation required "
@@ -48,7 +48,7 @@ def generate_pdf(inspection, rows: list) -> bytes:
                                textColor=colors.grey)
 
     story = []
-    story.append(Paragraph("MitraMetrology AI — Inspection Report", title_style))
+    story.append(Paragraph("LabelGuard — Inspection Report", title_style))
     story.append(Spacer(1, 6))
     story.append(Paragraph(
         f"Public ID: {inspection.public_id}&nbsp;&nbsp;|&nbsp;&nbsp;"
@@ -151,7 +151,7 @@ def generate_docx(inspection, rows: list) -> bytes:
 
     doc = Document()
 
-    h = doc.add_heading("MitraMetrology AI — Inspection Report", level=0)
+    h = doc.add_heading("LabelGuard — Inspection Report", level=0)
     h.alignment = 1
 
     p = doc.add_paragraph()

@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MitraMetrology AI",
+  title: "LabelGuard",
   description: "Scan. Verify. Explain. Enforce. — SIH PS 26034",
 };
 

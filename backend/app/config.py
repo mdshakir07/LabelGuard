@@ -10,7 +10,7 @@ _REPO_ROOT = Path(__file__).resolve().parents[2]
 class Settings(BaseSettings):
     model_config = ConfigDict(env_file=".env", env_file_encoding="utf-8")
 
-    app_name: str = "MitraMetrology AI"
+    app_name: str = "LabelGuard"
     environment: str = "dev"
 
     database_url: str = "postgresql+psycopg2://postgres@127.0.0.1:5432/mitrametrology"
@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     jwt_secret_key: str = "dev-only-change-me"
     jwt_algorithm: str = "HS256"
     jwt_expires_minutes: int = 480
-    jwt_issuer: str = "mitrametrology"
+    jwt_issuer: str = "labelguard"
 
     storage_root: str = "backend/storage"
 
