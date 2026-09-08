@@ -1,10 +1,5 @@
-import ScreenStub from "@/components/ScreenStub";
+import { redirect } from "next/navigation";
 
-export default function DashboardPage() {
-  return (
-    <ScreenStub
-      title="S02 — Dashboard"
-      description="Inspection counts, status, categories, trends (PRD §32 KPIs). Owned by C7."
-    />
-  );
+export default function Home() {
+  redirect("/dashboard");
 }

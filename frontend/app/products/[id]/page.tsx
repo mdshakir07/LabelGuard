@@ -1,10 +1,29 @@
-﻿export default function Page() {
+﻿"use client";
+
+import Link from "next/link";
+import { use } from "react";
+import { AuthShell } from "@/components/AuthShell";
+
+export default function ProductDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = use(params);
   return (
-    <main className="flex min-h-screen items-center justify-center p-8">
-      <div className="rounded-xl border border-gray-200 bg-white p-10 text-center shadow-sm">
-        <h1 className="text-2xl font-semibold text-gray-900">S11 Product Detail</h1>
-        <p className="mt-2 text-sm text-gray-500">MitraMetrology AI â€” route stub (Phase 0). Full screen lands in C1â€“C8.</p>
+    <AuthShell>
+      <div className="mb-5">
+        <Link href="/products" className="text-sm text-neutral-600 hover:underline">
+          ← Products
+        </Link>
+        <h1 className="mt-1 text-xl font-bold text-neutral-900">
+          Product #{id}
+        </h1>
       </div>
-    </main>
+      <div className="max-w-xl rounded-xl border border-neutral-200 bg-white p-5 text-sm text-neutral-600">
+        Product profiles are a deferred feature (PRD §40, P1). Inspection-level
+        data is available from the inspection record.
+      </div>
+    </AuthShell>
   );
 }

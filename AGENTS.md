@@ -71,7 +71,7 @@ LabelGuard/
   docs/prd/PRD.md  docs/contracts/  docs/legal/sources.md
   backend/app/{main,config,db}.py {api,models,schemas,auth} services/{quality,preprocessing,ocr,extraction,rules,evidence,reports}.py seed/
   backend/tests/  tests/
-  frontend/ (Next.js 15 + Tailwind)
+  frontend/ (Next.js 16 + Tailwind; proxy.ts gates /dashboard)
   rules/versions/seed_rules_v1.json
   scripts/ (psql-setup, dev)
   ml/ocr/ ml/detectors/
@@ -81,10 +81,13 @@ LabelGuard/
 - Backend: `python -m venv backend/.venv` then `backend/.venv\Scripts\pip install ...`; run `backend/.venv\Scripts\uvicorn app.main:app --reload --port 8000`
 - Run deps: fastapi, uvicorn, sqlalchemy, psycopg2-binary, pydantic, python-jose/PyJWT, passlib[bcrypt], python-multipart, Pillow, **opencv-contrib-python==4.10.0.84** (paddlex OCR-core pins this exact version — do NOT swap to plain opencv-python), paddleocr (paddlepaddle CPU), numpy, reportlab, python-docx, alembic, pytest, httpx
 - Tests: `backend/.venv\Scripts\python -m pytest backend/tests`
-- Frontend: `npm run dev` / `npm run build`
+- Demo seed (PRD §41): from backend/: `.venv\Scripts\python -m seed.demo_data [--reset]` (synthetic label images + scripted OCR bboxes → runs the REAL extraction/rules/evidence engine; outcomes deterministic)
+- Cross-stack E2E (backend :8000 + built frontend :3000): `backend/.venv\Scripts\python -m pytest tests/e2e_flow.py -v`
+- A-track live smoke: `backend/.venv\Scripts\python scripts\api_smoke.py` (29 checks: lifecycle, RBAC, review/close, category, reports)
+- Frontend: `npm run dev` / `npm run build` / `npm run lint`
 - Postgres (psql not on PATH): `& "C:\Users\shaki\anaconda3\Library\bin\psql" -U postgres -h 127.0.0.1 ...` or `.\scripts\pg-local.ps1 status`
 - Backend smoke test: start uvicorn in backend/, then `Invoke-RestMethod http://127.0.0.1:8000/health`
-- Lint/typecheck: add `npm run lint` for frontend (Next default) when CI is configured.
+- Lint/typecheck: `npm run lint` for frontend (Next 16; ESLint flat config) runs clean; typecheck via `npm run build`.
 
 ## Golden-rule enforcement in code
 - Assessment state machine (PRD §21) is enforced in the rules service (B), surfaced in UI labels (C), never bypassed by API (A).
