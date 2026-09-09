@@ -1,0 +1,59 @@
+# Render Blueprint - LabelGuard
+# Deploy by pushing this repo to GitHub and using:
+#   Render Dashboard -> New -> Blueprint -> connect this repo
+# Blueprint creates 3 auto-wired resources:
+#   labelguard-db (managed PostgreSQL)
+#   labelguard-api (FastAPI backend web service)
+#   labelguard-frontend (Next.js web service)
+#
+# AFTER the first deploy (URLs are assigned only then) you MUST update two values:
+#   1. Frontend -> build arg NEXT_PUBLIC_API_URL = backend URL, e.g. https://labelguard-api-xxxx.onrender.com
+#      then: Manual Deploy -> Clear build cache & deploy (it is baked into the JS bundle)
+#   2. Backend  -> env CORS_ORIGINS           = frontend URL, e.g. https://labelguard-frontend-xxxx.onrender.com
+#      then: Manual Deploy
+#
+# Note: Render's container disk is ephemeral - uploaded label images and generated
+# reports are lost on redeploy. JWT_SECRET_KEY is generated once on provision.
+
+databases:
+  - name: labelguard-db
+    plan: free
+    databaseName: mitrametrology
+    ipAllowList: []
+
+services:
+  - type: web
+    name: labelguard-api
+    runtime: docker
+    plan: free
+    dockerfilePath: backend/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: labelguard-db
+          property: connectionString
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: ENVIRONMENT
+        value: production
+      - key: STORAGE_ROOT
+        value: /app/storage
+      - key: CORS_ORIGINS
+        value: ""
+        sync: false
+
+  - type: web
+    name: labelguard-frontend
+    runtime: docker
+    plan: free
+    dockerfilePath: frontend/Dockerfile
+    dockerContext: .
+    healthCheckPath: /login
+    buildArgs:
+      - key: NEXT_PUBLIC_API_URL
+        value: "http://127.0.0.1:8000"
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: "http://127.0.0.1:8000"
