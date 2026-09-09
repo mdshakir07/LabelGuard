@@ -7,11 +7,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-COPY backend/requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY backend/requirements.txt backend/requirements.txt
+RUN pip install --no-cache-dir -r backend/requirements.txt
 
-COPY backend/ .
-COPY rules/ rules/
+# Copy the whole repo so parent-based path resolution (rules/, storage)
+# works exactly as in local dev.
+COPY . .
+
+WORKDIR /app/backend
 
 ENV PORT=8000
 EXPOSE 8000
