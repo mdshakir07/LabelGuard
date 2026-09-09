@@ -41,7 +41,6 @@ services:
       - key: STORAGE_ROOT
         value: /app/storage
       - key: CORS_ORIGINS
-        value: ""
         sync: false
 
   - type: web
