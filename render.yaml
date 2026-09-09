@@ -7,10 +7,10 @@
 #   labelguard-frontend (Next.js web service)
 #
 # AFTER the first deploy (URLs are assigned only then) you MUST update two values:
-#   1. Frontend -> build arg NEXT_PUBLIC_API_URL = backend URL, e.g. https://labelguard-api-xxxx.onrender.com
-#      then: Manual Deploy -> Clear build cache & deploy (it is baked into the JS bundle)
-#   2. Backend  -> env CORS_ORIGINS           = frontend URL, e.g. https://labelguard-frontend-xxxx.onrender.com
-#      then: Manual Deploy
+#   1. Frontend -> env NEXT_PUBLIC_API_URL = backend URL, e.g. https://labelguard-api-xxxx.onrender.com
+#      (Render auto-passes env vars to Docker as build args, so it gets baked into the
+#      JS bundle on the next Build & Deploy. Then: Manual Deploy -> Clear build cache & deploy)
+#   2. Backend  -> env CORS_ORIGINS       = frontend URL, e.g. https://labelguard-frontend-xxxx.onrender.com
 #
 # Note: Render's container disk is ephemeral - uploaded label images and generated
 # reports are lost on redeploy. JWT_SECRET_KEY is generated once on provision.
@@ -51,9 +51,6 @@ services:
     dockerfilePath: frontend/Dockerfile
     dockerContext: .
     healthCheckPath: /login
-    buildArgs:
-      - key: NEXT_PUBLIC_API_URL
-        value: "http://127.0.0.1:8000"
     envVars:
       - key: NEXT_PUBLIC_API_URL
         value: "http://127.0.0.1:8000"
