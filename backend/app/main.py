@@ -4,6 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from .api import dashboard, findings, images, inspections, process, reports, rules
 from .auth.router import router as auth_router
 from .config import get_settings
+from .db import SessionLocal
+from .models import Inspection
 
 settings = get_settings()
 
@@ -50,3 +52,27 @@ def root():
 @app.get("/health")
 def health():
     return {"status": "ok", "environment": settings.environment}
+
+
+@app.on_event("startup")
+def _recover_stale_processing() -> None:
+    """Background processing is in-memory; a restart (deploy/OOM/kill) strands
+    inspections in 'processing'. Reset them to FAILED so they can be re-run."""
+    db = SessionLocal()
+    try:
+        n = (
+            db.query(Inspection)
+            .filter(Inspection.status == "processing")
+            .update(
+                {
+                    Inspection.status: "FAILED",
+                    Inspection.process_error: "processing interrupted by service restart; re-run processing",
+                }
+            )
+        )
+        if n:
+            db.commit()
+    except Exception:
+        db.rollback()
+    finally:
+        db.close()
